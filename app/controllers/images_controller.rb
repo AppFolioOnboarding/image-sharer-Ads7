@@ -14,7 +14,7 @@ class ImagesController < ApplicationController
   end
 
   def show
-    @image = Image.find(params[:id])
+    @image = Image.find_by_id!(params[:id])
   end
 
   private
