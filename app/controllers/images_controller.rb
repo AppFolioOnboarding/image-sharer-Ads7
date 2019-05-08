@@ -9,15 +9,16 @@ class ImagesController < ApplicationController
     if @image.save
       redirect_to @image
     else
-       render 'new'
+      render 'new'
     end
   end
 
   def show
-    @image = Image.find_by_id!(params[:id])
+    @image = Image.find(params[:id])
   end
 
   private
+
   def image_params
     params.require(:image).permit(:url)
   end
