@@ -1,27 +1,10 @@
 <div class="row">
   <h2>Create New Image</h2>
 </div>
-<div class="row">
-  <%= form_with scope: :image, url: images_path, local: true do |form| %>
-      <% if @image.errors.any? %>
-          <div id="error_explanation" class="row alert alert-danger" role="alert">
-            <%= pluralize(@image.errors.count, "error") %>
-            <ul>
-              <% @image.errors.full_messages.each do |msg| %>
-                  <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <p>
-        <%= form.label :url %><br>
-        <%= form.text_field :url %>
-      </p>
-
-      <p>
-        <%= form.submit %>
-      </p>
+<div class="row">œ
+  <%= simple_form_for @image do |f| %>
+      <%= f.input :url %>
+      <%= f.button :submit, class: 'btn-primary' %>
   <% end %>
 </div>
 
