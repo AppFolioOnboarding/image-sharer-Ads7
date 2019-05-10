@@ -3,6 +3,9 @@ require 'test_helper'
 class ImagesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @image = Image.all.order(created_at: :desc)[0]
+    @image.tag_list = 'test1, test2, test3'
+    @image.save
+    @image.reload
   end
 
   def test_index
@@ -10,6 +13,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
     assert_select '.card', 2
     assert_select '.card-title', @image.id.to_s
+    assert_select '.badge-warning', 3
   end
 
   def test_show
@@ -17,6 +21,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     assert_select '#image-url', @image.url
+    assert_select '.badge-primary', 3
   end
 
   def test_new
@@ -31,7 +36,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
       image_params = { url: 'http://test12.png', tag_list: 'test, test1, test2' }
       post images_path, params: { image: image_params }
     end
-    assert_equal %w(test test1 test2), Image.last.tag_list
+    assert_equal %w[test test1 test2], Image.last.tag_list
     assert_redirected_to image_path(Image.last)
   end
 
