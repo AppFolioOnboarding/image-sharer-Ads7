@@ -4,6 +4,7 @@
 <div class="row">
   <%= simple_form_for @image do |f| %>
       <%= f.input :url %>
+      <%= f.input :tag_list, input_html: {value: @image.tag_list.to_s} %>
       <%= f.button :submit, class: 'btn-primary' %>
   <% end %>
 </div>

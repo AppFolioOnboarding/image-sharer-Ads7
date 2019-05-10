@@ -23,13 +23,15 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     get new_image_path
     assert_response :ok
     assert_select '#image_url', 1
+    assert_select '#image_tag_list', 1
   end
 
   def test_create__succeed
     assert_difference('Image.count', 1) do
-      image_params = { url: 'http://test12.png' }
+      image_params = { url: 'http://test12.png', tag_list: 'test, test1, test2' }
       post images_path, params: { image: image_params }
     end
+    assert_equal %w(test test1 test2), Image.last.tag_list
     assert_redirected_to image_path(Image.last)
   end
 

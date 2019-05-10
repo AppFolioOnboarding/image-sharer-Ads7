@@ -3,4 +3,5 @@ class Image < ApplicationRecord
   validates :url, uniqueness: true, presence: true,
                   format: { with: IMAGE_URL_REGEX,
                             message: 'Invalid image url' }
+  acts_as_taggable # Alias for acts_as_taggable_on :tags
 end
