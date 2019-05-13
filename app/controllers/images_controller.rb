@@ -8,6 +8,13 @@ class ImagesController < ApplicationController
     @image = Image.new
   end
 
+  def destroy
+    @image = Image.find(params[:id])
+    @image.destroy
+
+    redirect_to images_path
+  end
+
   def create
     @image = Image.new(image_params)
 

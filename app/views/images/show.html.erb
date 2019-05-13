@@ -1,3 +1,7 @@
+<%= link_to 'Destroy', image_path(@image.id),
+            method: :delete,
+            data: { confirm: 'Are you sure?' },
+            class: 'text-danger' %>
 <div class="row">
   <p id="image-id"><%= @image.id %></p>
   <img src=<%= @image.url %> style="max-width:400px;", class="img-thumbnail" alt="Responsive image">
@@ -6,8 +10,8 @@
   <%= @image.url %>
 </div>
 <div class="row">
-  <% @image.tag_list.each  do |tag| %>
-      <span class="badge badge-warning" <%= link_to tag , images_path(:tag=>tag) %></span>
-      &nbsp
+  <% @image.tag_list.each do |tag| %>
+  <span class="badge badge-warning" <%= link_to tag , images_path(:tag=>tag) %></span>
+  &nbsp
   <% end %>
 </div>

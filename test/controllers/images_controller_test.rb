@@ -19,6 +19,7 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
   def test_index_filter_by_tag
     get images_path tag: 'test1'
     assert_response :ok
+
     assert_select '.card', 1
     assert_select '.card-title', @image.id.to_s
     assert_select '.badge-warning', 3
@@ -56,5 +57,12 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     end
     assert_response :ok
     assert_select '.error', 'Invalid image url'
+  end
+
+  def test_destroy
+    assert_difference('Image.count', -1) do
+      delete image_path(@image.id)
+    end
+    assert_redirected_to images_path
   end
 end
