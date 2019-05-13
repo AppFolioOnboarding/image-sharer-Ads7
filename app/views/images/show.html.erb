@@ -1,4 +1,7 @@
 <div class="row">
-  <img src=<%= @image.url %> class="img-thumbnail" alt="Responsive image">
+  <p id="image-id"><%= @image.id %></p>
+  <img src=<%= @image.url %> style="max-width:400px;", class="img-thumbnail" alt="Responsive image">
+</div>
+<div class="row" id="image-url">
   <%= @image.url %>
 </div>

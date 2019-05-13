@@ -12,7 +12,7 @@ class ImageTest < ActiveSupport::TestCase
   end
 
   test 'create valid image' do
-    IMAGE_URL = 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg'.freeze
+    IMAGE_URL = 'https://test.jpeg'.freeze
     total_count = Image.all.count
     image = Image.new('url': IMAGE_URL)
     assert image.save
