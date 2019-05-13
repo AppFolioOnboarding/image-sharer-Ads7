@@ -16,12 +16,21 @@ class ImagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '.badge-warning', 3
   end
 
+  def test_index_filter_by_tag
+    get images_path tag: 'test1'
+    assert_response :ok
+    assert_select '.card', 1
+    assert_select '.card-title', @image.id.to_s
+    assert_select '.badge-warning', 3
+  end
+
   def test_show
     get image_path(@image.id)
 
     assert_response :ok
+    assert_select '#image-id', @image.id.to_s
     assert_select '#image-url', @image.url
-    assert_select '.badge-primary', 3
+    assert_select '.badge-warning', 3
   end
 
   def test_new
